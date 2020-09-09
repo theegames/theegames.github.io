@@ -728,7 +728,9 @@ transition: all 0.2s linear 0s;
 
 @media screen and (max-width: 520px) {
   html, body {
-    font-size: 15px; }
+    font-size: 15px; 
+    margin-top: 40px;  
+  }
 
   body {
     margin: 20px 0;
@@ -764,7 +766,7 @@ transition: all 0.2s linear 0s;
     margin-top: 2px; }
 
   .game-container {
-    margin-top: 17px;
+    margin-top: 60px;
     position: relative;
     padding: 10px;
     cursor: default;
@@ -775,7 +777,7 @@ transition: all 0.2s linear 0s;
     -ms-user-select: none;
     -ms-touch-action: none;
     touch-action: none;
-    background: #bbada0;
+    background: #31eb89;
     border-radius: 6px;
     width: 280px;
     height: 280px;
