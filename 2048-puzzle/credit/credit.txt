@@ -1,0 +1,6 @@
+
+ Created by Gabriele Cirulli. - (http://gabrielecirulli.com)
+ Based on 1024 by Veewo Studio. - (https://itunes.apple.com/us/app/1024!/id823499224) 
+ conceptually similar to Threes by Asher Vollmer. - (http://asherv.com/threes/) 
+
+ 
