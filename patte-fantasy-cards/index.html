@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=utf-8 />
+	<!--<meta name="viewport" content="width=1024,height=768" />-->
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	<meta name="Keywords" lang="fr" content="solitaire,klondike,warpklondike,solitairehd,javascript,js,warpdesign,css3,transitions,html5,webkit,mozilla,iphone,ipad" />
+	<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" /> 
+	<title>Prime Game: Patte | Fantasy Card Game</title>
+	<link rel="stylesheet" href="css/main.css" type="text/css" />
+	<link rel="stylesheet" href="css/jquery.gritter.css" type="text/css" />
+	<link rel="stylesheet" href="css/transitions.css" type="text/css" />
+	
+	<!-- Import Sentry SDK-->
+	<script src="https://browser.sentry-cdn.com/5.20.1/bundle.min.js" integrity="sha384-O8HdAJg1h8RARFowXd2J/r5fIWuinSBtjhwQoPesfVILeXzGpJxvyY/77OaPPXUo" crossorigin="anonymous"></script>
+	<!--Configure Sentry SDK-->
+	<script>
+	
+		Sentry.init({ 
+		dsn: 'https://37bd8f5e442c46d097beaae3421077e4@o432870.ingest.sentry.io/5387004' 
+		});
+	</script>
+	
+	<script src="https://code.jquery.com/pep/0.3.0/pep.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
+	<script type="text/javascript" src="js/jquery.gritter.min.js"></script>
+	<script type="text/javascript" src="js/Lawnchair.js"></script>
+	<script type="text/javascript" src="js/adaptors/LawnchairAdaptorHelpers.js"></script>
+	<script type="text/javascript" src="js/adaptors/DOMStorageAdaptor.js"></script>
+
+	<script type="text/javascript" src="js/Console.js"></script>
+	<script type="text/javascript" src="js/ConfigurationManager.js"></script>
+	
+	<!-- DB stuff -->
+	<script type="text/javascript" src="js/DBManager.js"></script>
+	<!-- /DB stuff -->
+
+	<script type="text/javascript" src="js/SoundManager.js"></script>
+	<script type="text/javascript" src="js/TimerManager.js"></script>
+	<script type="text/javascript" src="js/EventsManager.js"></script>
+	<script type="text/javascript" src="js/Card.js"></script>
+	<script type="text/javascript" src="js/Deck.js"></script>
+	<script type="text/javascript" src="js/Misc.js"></script>
+	<script type="text/javascript" src="js/Particles.js"></script>
+	<script type="text/javascript" src="js/game.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			WarpKlondikeMain.init();
+			$('.github-fork-ribbon-wrapper').bind('touchstart', function() {
+				document.location.href = $(this).find('a').attr('href');
+			});	
+		});
+	</script>
+	<link href="https://fonts.googleapis.com/css2?family=Aladin&display=swap" rel="stylesheet">
+</head>
+<body class="hd" touch-action="none">
+	
+	<div class="description">
+	<h2>The HTML5/CSS3 card game</h2> 
+	<ul> 
+		<li>Optimized for sofa play on the iPad!</li> 
+		<li>CSS3-enhanced (degrades nicely on other browsers)</li> 
+		<li>Nice graphics</li> 
+	</ul> 
+	</div>
+	<div id="pause">
+		<p>Pause</p>
+	</div>
+
+	<div id="playground" class="light">
+		<!-- overlay Pause element -->
+	</div>
+
+	<form id="options" class="dialog">
+		<fieldset>
+			<!-- <div class="check" id="sound">sound</div> -->
+			<div class="check" id="autoFlip">autoFlip</div>
+			<div class="check" id="autoPlay">autoPlay</div>
+			<ul id="themeList">
+				<li>
+					<a href="#" class="themeSelect"><img src="css/themes/fantasy/preview.png" alt="fantasy" /></a><br />
+					Fantasy
+				</li>
+				<!--
+				<li>
+					<a href="#" class="themeSelect"><img src="css/themes/jerico/preview.png" alt="jerico" /></a><br />
+					Jerico
+				</li>
+				-->
+			</ul>
+		<div class="ok"></div>
+		</fieldset>
+	</form>
+
+	<div id="scores" class="dialog">
+		<ul></ul>
+		<div class="ok"></div>
+	</div>
+
+	<div id="youWon" class="dialog">
+		<div class="contents">
+			<strong>Score: </strong><span class="score">328</span>
+			<p><u>Enter your name</u></p>
+			<input type="text" name="userName" id="userName" width="20" />
+			<br />
+			<div class="check checked" id="tweetScore">Tweet score</div>
+			<div style="margin-top:15px;" class="ok"></div>
+		</div>
+	</div>
+
+	<div id="statusPanel">
+		<div class="score">0 Points</div><div class="time">00 : 00</div><div class="startAgain">Restart</div><div class="undo">Undo</div>
+	</div>
+
+	<div id="optionsPanel">
+		<!-- <button class="icon home" id="gotoHome">Home</button> -->
+		<button class="icon options" id="menuToggle">Options</button>
+		<button class="icon scores" id="showScores">Scores</button>
+
+	</div>
+
+	<div id="shadow"></div>
+	<div id="splash"><div class="content"></div></div>
+</body>
+</html>
