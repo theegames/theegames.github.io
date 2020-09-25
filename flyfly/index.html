@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <title>Fly Fly</title>
+        <link rel="apple-touch-icon-precomposed" href="data/img/touch-icon-iphone.png"/>
+        <link rel="apple-touch-icon-precomposed" sizes="120x120" href="data/img/touch-icon-iphone-retina.png"/>
+        <link rel="shortcut icon" href="data/img/favicon.ico">
+        <link rel="stylesheet" type="text/css" media="screen" href="index.css">
+        <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="apple-mobile-web-app-title" content="Clumsy Bird">
+        <meta charset="UTF-8" />
+        <meta name="description" content="Fly Fly"/>
+        <meta name="keywords" content="flappybird, flappy, bird, game, html5, melonjs,clone"/>
+        <meta name="robots" content="index, follow">
+
+        <!-- Import Sentry SDK-->
+        <script src="https://browser.sentry-cdn.com/5.20.1/bundle.min.js" integrity="sha384-O8HdAJg1h8RARFowXd2J/r5fIWuinSBtjhwQoPesfVILeXzGpJxvyY/77OaPPXUo" crossorigin="anonymous"></script>
+        <!--Configure Sentry SDK-->
+        <script>
+        
+            Sentry.init({ 
+            dsn: 'https://37bd8f5e442c46d097beaae3421077e4@o432870.ingest.sentry.io/5387004' 
+            });
+
+        </script>
+        
+        
+    </head>
+
+    <body>
+        <!-- Canvas placeholder -->
+        <div id="screen"></div>
+
+        <!-- melonJS Library -->
+        <script type="text/javascript" src="js/melonJS-min.js" ></script>
+        <script type="text/javascript" src="build/clumsy-min.js" ></script>
+        <script type="text/javascript">
+            window.onReady(function onReady() {
+                game.onload();
+            });
+        </script>
+
+    </body>
+</html>
