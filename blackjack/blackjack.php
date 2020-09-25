@@ -1,3 +1,6 @@
+
+<!DOCTYPE html>
+<html lang="en">
 <?
 session_name("bj");
 session_start();
@@ -21,8 +24,6 @@ if ($game->ds['g_status'] == 'W' && $game->data['state'] <= 1 && $game->ds['g_pl
 $game_process = ($game->data['state'] == 2 || $game->data['state'] == 3);
 $finish_game = $game->data['state'] == 4 || $game->data['state'] <= 1;
 ?>
-<!DOCTYPE html>
-<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Multiplayer BlackJack game</title>
