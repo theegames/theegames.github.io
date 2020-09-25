@@ -1,0 +1,8 @@
+{
+  "name": "FlyFly",
+  "description": "MelonJS Fly Fly",
+  "repository": "https://github.com/ellisonleao/clumsy-bird",
+  "logo": "https://raw.githubusercontent.com/ellisonleao/clumsy-bird/gh-pages/data/img/touch-icon-iphone.png",
+  "keywords": ["grunt", "melonjs", "games"]
+}
+
