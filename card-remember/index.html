@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="apple-mobile-web-app-capable content=yes">
+  <meta name="apple-mobile-web-app-status-bar-style content=black">
+  <meta name="viewport" content="width=device-width; maximum-scale=1.0; user-scalable=0;target-densitydpi=device-dpi" />
+
+  <title>Card Remember</title>
+  <link rel='icon' href='favicon.ico' type='image/x-icon' />
+  <script src="https://kit.fontawesome.com/e2b664cd37.js" crossorigin="anonymous"></script>
+
+  <!-- Import Sentry SDK-->
+	<script src="https://browser.sentry-cdn.com/5.20.1/bundle.min.js" integrity="sha384-O8HdAJg1h8RARFowXd2J/r5fIWuinSBtjhwQoPesfVILeXzGpJxvyY/77OaPPXUo" crossorigin="anonymous"></script>
+	<!--Configure Sentry SDK-->
+	<script>
+	
+		Sentry.init({ 
+		dsn: 'https://37bd8f5e442c46d097beaae3421077e4@o432870.ingest.sentry.io/5387004' 
+		});
+
+    </script>
+</head>
+<body>
+
+  <div id="root"></div>
+  <script src="main.js"></script>
+</body>
+</html>
