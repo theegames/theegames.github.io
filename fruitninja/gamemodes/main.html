@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Fruit Ninja</title>
+	<style>
+	body{
+		overflow: hidden;
+	}
+				
+	</style>
+</head>
+<body>
+	<canvas id="m_canvas" width="" height="" style="position: absolute;left: 0; top: 0;z-index: -1"></canvas>
+	<canvas id="c_canvas" width="" height="" style="position: absolute;left: 0; top: 0;z-index: 0"></canvas>
+	<canvas id="fruit_canvas" width="" height="" style="position: absolute;left: 0; top: 0;z-index: 0"></canvas>
+	<canvas id="b_canvas" width="" height="" style="position: absolute;left: 0; top: 0;z-index: 1"></canvas>
+	<canvas id="t_canvas" width="" height="" style="position: absolute;left: 0; top: 0;z-index: 2"></canvas>
+	<canvas id="text1_canvas" width="" height="" style="position: absolute;left: 0; top: 0;z-index: 3"></canvas>
+	<canvas id="text2_canvas" width="" height="" style="position: absolute;left: 0; top: 0;z-index: 3"></canvas>
+	<canvas id="text3_canvas" width="" height="" style="position: absolute;left: 0; top: 0;z-index: 5"></canvas>
+	<canvas id="pagec_canvas" width="" height="" style="position: absolute;left: 0; top: 0;z-index: 5"></canvas>	
+</body>
+<script>
+	function _getid(id){
+		return document.getElementById(id);
+	}
+//main background canvas
+	m_can=_getid('m_canvas');
+	m_can.width=window.innerWidth;
+	m_can.height=window.innerHeight;	
+	m_ctx=m_can.getContext('2d');	
+
+	img = new Image();
+	img.src = './images/img';
+
+//used to put an opaque dark color at the time of page change 	
+	t_can=_getid('t_canvas');
+	t_can.width=window.innerWidth;
+	t_can.height=window.innerHeight;	
+	t_ctx=t_can.getContext('2d');
+
+//fruit canvas used to make images of fruits
+	fruit_can=_getid('fruit_canvas');
+	fruit_can.width=window.innerWidth;
+	fruit_can.height=window.innerHeight;	
+	fruit_ctx=fruit_can.getContext('2d');
+	
+//Page change animation canvas
+	pagec_can=_getid('pagec_canvas');
+	pagec_can.width=window.innerWidth;
+	pagec_can.height=window.innerHeight;	
+	pagec_ctx=pagec_can.getContext('2d');
+
+//To stroke text in rotating form
+	text1_can=_getid('text1_canvas');
+	text1_can.width=window.innerWidth;
+	text1_can.height=window.innerHeight;	
+	text1_ctx=text1_can.getContext('2d');
+
+	text2_can=_getid('text2_canvas');
+	text2_can.width=window.innerWidth;
+	text2_can.height=window.innerHeight;	
+	text2_ctx=text2_can.getContext('2d');
+
+	text3_can=_getid('text3_canvas');
+	text3_can.width=window.innerWidth;
+	text3_can.height=window.innerHeight;	
+	text3_ctx=text3_can.getContext('2d');
+
+//blade canvas	
+	b_can=_getid('b_canvas');
+	b_can.width=window.innerWidth;
+	b_can.height=window.innerHeight;	
+	ctx=b_can.getContext('2d');	
+
+//To put circle and Fruit ninja logo image
+	c_can=_getid('c_canvas');
+	c_can.width=window.innerWidth;
+	c_can.height=window.innerHeight;	
+	c_ctx=c_can.getContext('2d');
+	
+	fruitimg=new Image();
+	fruitimg.src='./images/fruit';
+	ninjaimg=new Image();
+	ninjaimg.src='./images/ninja';
+	img.onload=function(){
+	m_ctx.drawImage(img,0,0,window.innerWidth,window.innerHeight);
+	}
+	fruitimg.onload=function(){	
+	c_ctx.drawImage(fruitimg,50,50,350,140);
+	}
+	ninjaimg.onload=function(){
+	c_ctx.drawImage(ninjaimg,450,50,350,140);
+	}
+/******************************************/	
+	var radius = 90;
+	function drawCircle(centerX,centerY)
+	{ 
+		c_ctx.beginPath();
+     		c_ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+      		c_ctx.fillStyle = 'rgba(0,0,128,0.4)';
+      		c_ctx.fill();
+      		c_ctx.lineWidth = 5;
+      		c_ctx.strokeStyle = 'rgba(0,0,128,0.8)';
+      		c_ctx.stroke();
+    	
+    		c_ctx.beginPath();
+     		c_ctx.arc(centerX, centerY, radius-30, 0, 2 * Math.PI, false);
+      		c_ctx.fillStyle = 'rgba(0,0,0,0.1)';
+      		c_ctx.fill();
+      		c_ctx.lineWidth = 5;
+      		c_ctx.strokeStyle = '#003300';
+      		c_ctx.stroke();
+	}
+
+	function writename(x,y,r,name,canvasno,fontsize,rangle){
+		var len=name.length;
+		if(canvasno == 1)
+		{	
+			var cantowrite_ctx=text1_ctx;
+		}
+		else if(canvasno == 2)
+		{	
+			var cantowrite_ctx=text2_ctx;
+		}
+		else if(canvasno == 3)
+		{	
+			var cantowrite_ctx=text3_ctx;
+		}
+		
+		cantowrite_ctx.font = fontsize+'px Comic Sans MS, Bold'//"px Unpilgi, Bold";
+		cantowrite_ctx.strokeStyle='white';
+		cantowrite_ctx.fillStyle='gray';	
+		var angle=rangle;
+		var save=angle;
+		wname=setInterval(function(){
+		cantowrite_ctx.clearRect(0,0,window.innerWidth,window.innerHeight);
+		angle=angle+0.02;
+		save=angle;
+		for(i=0;i<len;i++)
+		{
+			cantowrite_ctx.save();
+			cantowrite_ctx.translate(x,y);
+			angle += 0.25;
+			cantowrite_ctx.rotate(angle);
+			cantowrite_ctx.fillText(name[i],0,-r+20);
+			cantowrite_ctx.strokeWidth=50;
+			cantowrite_ctx.strokeText(name[i],0,-r+20);
+			cantowrite_ctx.restore();
+		}
+		angle=save;
+		},50)
+	}
+	
+	cimg=new Image();
+	cimg.src='./images/circle';
+	
+	function putCircle(cx,cy){
+		c_ctx.drawImage(cimg,cx-100,cy-100,200,200);
+	}
+	cimg.onload=function(){	
+	putCircle(250,500);
+	writename(250,500,90,'Arcade Mode',1,35,-2);
+	putCircle(500,400);
+	writename(500,400,90,'Zen Mode',2,40,-2);
+	putCircle(750,500);
+	writename(750,500,90,'Back',3,40,-2);
+	}
+	var images=[];
+	for(var i=0;i<2;i++)
+	{
+		images[i] = new Image();
+		var temp=i;
+		images[i].src='./images/'+temp;
+	}
+	images[2]=new Image();
+	images[2].src='./images/back';
+	var angleside=0;
+	var anglemid=0;
+	moveFruit=setInterval(function(){
+
+		fruit_ctx.clearRect(0,0,window.innerWidth,window.innerHeight);
+		fruit_ctx.save();
+		fruit_ctx.translate(500,400);
+		
+		anglemid -= 0.02;
+		fruit_ctx.rotate(anglemid);
+		fruit_ctx.drawImage(images[0],-40,-40,80,80);
+		fruit_ctx.restore();
+	
+		fruit_ctx.save();
+		fruit_ctx.translate(250,500);
+		
+		angleside += 0.02;
+		fruit_ctx.rotate(angleside);
+		fruit_ctx.drawImage(images[1],-40,-40,80,80);
+		fruit_ctx.restore();
+
+		fruit_ctx.save();
+		fruit_ctx.translate(750,500);
+		
+		angleside += 0.01;
+		fruit_ctx.rotate(angleside);
+		fruit_ctx.drawImage(images[2],-40,-40,80,80);
+		fruit_ctx.restore();
+	},20);
+	
+	var sound_blade=new Audio();
+	sound_blade.src='../gamestart/soundfiles/blade.mp3';
+
+	var sound_fruit=new Audio();
+	sound_fruit.src='../gamestart/soundfiles/fruit.mp3';
+
+</script>
+<script src='./blade.js'></script>
+<script src='./newPage.js'></script>
+
+<html>

@@ -1,0 +1,82 @@
+var cut = 0;
+var cactive = 0;
+var score = 0;
+var scoreinc = 1;
+
+function scorehandler(){
+	s_ctx.clearRect(0,0,window.innerWidth,window.innerHeight);
+	cut++;	
+	score += scoreinc;
+	//also do this process in combohandler when the extra score due to combo increases 
+	animatescore();
+	sound_fruit.play();
+	if(cactive == 0)
+	  combohandler();
+}
+
+scorenum=[];
+
+for(var i = 0;i<11;i++){
+	scorenum[i] = new Image();
+	scorenum[i].src = './nums/'+i;
+}
+
+function animatescore(){
+	s_ctx.clearRect(0,0,window.innerWidth,window.innerHeight);
+	s_ctx.drawImage(scorenum[score%10],115,30,20,30);	
+	if(score > 9){
+		s_ctx.drawImage(scorenum[(Math.floor(score/10))%10],90,30,20,30);
+		if(score > 99){
+		if((Math.floor(score/100))%10 >0)
+		s_ctx.drawImage(scorenum[(Math.floor(score/100))%10],65,30,20,30);
+		}
+	}	
+}
+
+//COMBO DETECTION
+var icut = 0;
+function combohandler(){
+	cactive = 1;
+    icut = cut-1;
+	setTimeout(function(){
+		if((cut-icut) >= 3){
+			score = score+scoreinc*(cut-icut);
+			animatescore();
+	   		//drawCombo is also getting called in blade.js on mousedown
+	   		drawCombo(cut-icut);
+	   	}
+		icut = cut;
+		cactive = 0;
+	},400)
+}
+
+var cimage = [];
+for(var i = 0;i<6;i++){
+	cimage[i] = new Image();
+	cimage[i].src = './combo/'+i;
+}
+
+function drawCombo(val){
+	var temp = val-3;
+	var x = 150;
+	var y = 150;
+	var size = 3;
+	var sizemirror = 3;
+    temporary = setInterval(function(){
+		if(size < 150){
+			c_ctx.clearRect(0,0,window.innerWidth,window.innerHeight);
+			c_ctx.drawImage(cimage[temp],x,y,size,size);
+			x -= 1;
+			y -= 1;
+			size += 6;
+			sizemirror = size;
+		}
+		else{
+			sizemirror += 7;
+			if(sizemirror > 200){
+				c_ctx.clearRect(0,0,window.innerWidth,window.innerHeight);
+				clearInterval(temporary);
+			}
+		}			
+	},30);
+}

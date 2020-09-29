@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Fruit Ninja</title>
+	<style>
+	body{
+		overflow: hidden;
+	}
+				
+	</style>
+</head>
+<body>
+	<canvas id="m_canvas" width="" height="" style="position: absolute;left: 0; top: 0;z-index: -1"></canvas>
+	<canvas id="b_canvas" width="" height="" style="position: absolute;left: 0; top: 0;z-index: 1"></canvas>
+	<canvas id="goback_canvas" width="" height="" style="position: absolute;left: 0; top: 0;z-index: 0"></canvas>
+</body>
+<script src='./blade.js'></script>
+<script>
+	function _getid(id){
+		return document.getElementById(id);
+	}
+//main background canvas
+	m_can=_getid('m_canvas');
+	m_can.width=window.innerWidth;
+	m_can.height=window.innerHeight;	
+	m_ctx=m_can.getContext('2d');	
+
+//go back canvas
+	goback_can=_getid('goback_canvas');
+	goback_can.width=window.innerWidth;
+	goback_can.height=window.innerHeight;	
+	goback_ctx=goback_can.getContext('2d');	
+
+//blade canvas
+	can=_getid('b_canvas');
+	can.width=window.innerWidth;
+	can.height=window.innerHeight;
+	ctx=can.getContext('2d');
+
+	img = new Image();
+	img.src = './images/img';
+	
+	board=new Image();
+	board.src='./images/wboard';
+	
+	imgback=new Image();
+	imgback.src='./images/back';
+	img.onload=function(){
+		m_ctx.drawImage(img,0,0,window.innerWidth,window.innerHeight);
+	}
+	board.onload=function(){
+		m_ctx.drawImage(board,100,10,710,600);
+		m_ctx.font='15px Comic Sans MS, Bold';
+		m_ctx.fillText('In Fruit Ninja, the player slices fruit with a blade controlled via the mouse. As the fruit ',150,200);
+		m_ctx.fillText('is thrown onto the screen, the player swipes the mouse pointer across the screen to ',150,220);
+		m_ctx.fillText('create a slicing motion, attempting to slice the fruit in half.Extra points are awarded for ',150,240)
+		m_ctx.fillText('slicing multiple fruits with one swipe, Players must slice all fruit if three fruits are missed, ',150,260);
+		m_ctx.fillText('the game end. Bombs are occasionally thrown onto the screen, and will also end the game ',150,280);
+		m_ctx.fillText('should the player slice them.',150,300);
+		m_ctx.fillText('',150,260);	
+		m_ctx.fillText('',150,260);	
+	}
+	drawCircle(1188,565);
+	imgback.onload=function(){	
+		goback_ctx.drawImage(imgback,1158,528,70,70);
+	}		
+
+function newPage(){
+	if(X>1150 && X<1240 && Y>520 && Y<610){
+		var co=0.01;
+		goback_ctx.fillStyle='rgba(0,0,0,'+co+')';
+		setTimeout(function(){
+			var temp=setInterval(function(){
+				co+=0.001;
+				goback_ctx.fillRect(0,0,window.innerWidth,window.innerHeight);
+				if(co >11)
+					clearInterval(temp);
+			},20)
+		},200);
+
+		setTimeout(function(){
+			window.location.href='../Index/main.html';
+		},2000)
+	}
+}
+
+function drawCircle(centerX,centerY)
+{ 
+			goback_ctx.beginPath();
+     		goback_ctx.arc(centerX, centerY, 50, 0, 2 * Math.PI, false);
+      		goback_ctx.fillStyle = 'rgba(128,0,0,0.4)';
+      		goback_ctx.fill();
+      		goback_ctx.lineWidth = 5;
+      		goback_ctx.strokeStyle = 'rgba(128,0,0,1)';
+      		goback_ctx.stroke();
+    	
+    		goback_ctx.beginPath();
+     		goback_ctx.arc(centerX, centerY, 50-30, 0, 2 * Math.PI, false);
+      		goback_ctx.fillStyle = 'rgba(0,0,0,0.1s)';
+      		goback_ctx.fill();
+      		goback_ctx.lineWidth = 5;
+      		goback_ctx.strokeStyle = '#990000';
+      		goback_ctx.stroke();
+}
+</script>
