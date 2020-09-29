@@ -1,0 +1,70 @@
+https://mahdif.com/
+
+MIT License
+
+Copyright (c) 2018 Mahdi Al-Farra
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+        <div class="section-container section-credits">
+            <div class="section-wrapper credits-section-wrapper">
+                <h2 class="section-title">Credits</h2>
+                <p class="credits-subtitle">I wouldn’t be able to do it without you!</p>
+                <div class="credits-card-container">
+                    <div class="credits-card">
+                        <img src="images/credits-images/nour-abu-saud.jpg" alt="avatar of Nour Abu Saud" class="credits-card-avatar">
+                        <a href="https://twitter.com/Nour_ASoud" class="credits-card-name-title">Nour Abu Soud</a>
+                        <p class="credits-card-description">
+                            First of all, thank you for not devorsing me. And also for helping me debug the game, and for testing it a million times. And most importantly, for keeping up and believing in all my crazy ideas!
+                        </p>
+                    </div>
+                    <div class="credits-card">
+                        <img src="images/credits-images/amr-zahrawi.png" alt="avatar of Amr Zahrawi" class="credits-card-avatar">
+                        <a class="credits-card-name-title">Amr Zahrawi</a>
+                        <p class="credits-card-description">
+                            Thank you for believing in me and for listening to my stupid ideas!
+                        </p>
+                    </div>
+                    <div class="credits-card">
+                        <img src="images/credits-images/benjamin.png" alt="avatar of Benjamin" class="credits-card-avatar">
+                        <a href="https://twitter.com/smorkolama" class="credits-card-name-title">Benjamin</a>
+                        <p class="credits-card-description">
+                            Thank you for letting me <a href="">rubber-duck</a> you. I know. That might sound weird if you’re not a computer geek.
+                            But again, thanks Benjamin for answering my programming questions and supporting me.
+                        </p>
+                    </div>
+                    <div class="credits-card">
+                        <img src="images/credits-images/ignacio-crespo.jpg" alt="avatar of Ignacio Crespo" class="credits-card-avatar">
+                        <a href="https://twitter.com/itcrespo" class="credits-card-name-title">Ignacio Crespo</a>
+                        <p class="credits-card-description">
+                            Thank you for helping me understand more about game developement. I won’t forget our discussion about the sound pool.
+                        </p>
+                    </div>
+                    <div class="credits-card">
+                        <img src="images/credits-images/juan-rios.jpg" alt="avatar of Juan Rios" class="credits-card-avatar">
+                        <a href="https://juanrios.me/" class="credits-card-name-title">Juan Rios</a>
+                        <p class="credits-card-description">
+                            Thank you for testing the game, for inspiring me while designing it, and for the help choosing some of the sound effects!
+                        </p>
+                    </div>
+                </div>
+                <p style="text-align:center">🥔</p>
+            </div>
+        </div>
