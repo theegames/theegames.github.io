@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Fruit Ninja</title>
+	<style>
+	body{
+		overflow: hidden;
+	}
+				
+	</style>
+</head>
+<body>
+	<canvas id="m_canvas" width="" height="" style="position: absolute;left: 0; top: 0;z-index: -5"></canvas>
+	<canvas id="splash_canvas" width="" height="" style="position: absolute;left: 0; top: 0;z-index: -4"></canvas>
+	<canvas id="s_canvas" width="" height="" style="position: absolute;left: 0; top: 0; z-index: -2"></canvas>
+	<canvas id="ltimer_canvas" width="" height="" style="position: absolute;left: 0; top: 0; z-index: -3"></canvas>
+	<canvas id="b_canvas" width="" height="" style="position: absolute;left: 0; top: 0; z-index:10"></canvas>
+	<canvas id="f_canvas" width="" height="" style="position: absolute;left: 0; top: 0; z-index:3"></canvas>
+	<canvas id="hf_canvas" width="" height="" style="position: absolute;left: 0; top: 0; z-index:2"></canvas>
+	<canvas id="c_canvas" width="" 	height="" style="position: absolute;left: 0; top: 0; z-index:5"></canvas>
+	<canvas id="specialFT_canvas" width="" height="" style="position: absolute;left: 0; top: 0; z-index:5"></canvas>	
+	<canvas id="bo_canvas" width="" height="" style="position: absolute;left: 0; top: 0; z-index:6"></canvas>
+	<canvas id="timer_canvas" width="" height="" style="position: absolute;left: 0; top: 0; z-index:1"></canvas>
+	<canvas id="sfruitbackcolor_canvas" width="" height="" style="position: absolute;left: 0; top: 0; z-index:5"></canvas>
+	<canvas id="drop_canvas" width="" height="" style="position: absolute;left: 0; top: 0; z-index:4"></canvas>
+</body>
+<script src='./fruits.js'></script>
+<script src='./blade.js'></script>
+<script src='./score.js'></script>
+<script src='./collision.js'></script>
+<script src='./effects.js'></script>
+
+<script>
+
+//VARIABLE DECLARATION
+var wh=window.innerHeight;
+var ww=window.innerWidth;
+var dh=678;
+var dw=1301;
+var dropscolor=['rgba(255, 44, 44, 0.9)','rgba(0, 193, 44, 0.9)','rgba(255, 39, 44, 0.9)','rgba(255, 255, 0, 0.9)','rgba(255, 255, 0, 0.9)','rgba(255, 255, 0, 0.9)','rgba(255, 44, 44, 0.9)','rgba(0, 193, 44, 0.9)','rgba(255, 39, 44, 0.9)','rgba(255, 255, 0, 0.9)','','rgba(0,0,255,0.4)','rgba(255, 255, 0, 0.9)','rgba(0,0,255,0.2)'];
+	active=0;
+	uid=0;
+	X=0;
+	Y=0;
+	blade_P=[];
+	imgref=[];
+var gamerestart=0;
+/*************************/
+
+	img = new Image();
+	img.src = './image';
+
+//background image canvas 	
+	m_can=_getid('m_canvas');
+	m_can.width=window.innerWidth;
+	m_can.height=window.innerHeight;	
+	m_ctx=m_can.getContext('2d');			
+	img.onload=function(){
+	m_ctx.drawImage(img,0,0,window.innerWidth,window.innerHeight);
+}
+//splash image draw canvas
+	splash_can=_getid('splash_canvas');
+	splash_can.width=window.innerWidth;
+	splash_can.height=window.innerHeight;	
+	splash_ctx=splash_can.getContext('2d');	
+
+//special fruit background color	
+	sfruitbackcolor_can=_getid('sfruitbackcolor_canvas');
+	sfruitbackcolor_can.width=window.innerWidth;
+	sfruitbackcolor_can.height=window.innerHeight;	
+	sfruitbackcolor_ctx=sfruitbackcolor_can.getContext('2d');
+
+//drops canvas
+	drop_can=_getid('drop_canvas');
+	drop_can.width=window.innerWidth;
+	drop_can.height=window.innerHeight;	
+	drop_ctx=drop_can.getContext('2d');			
+	
+//special fruit taken image
+	specialFT_can=_getid('specialFT_canvas');
+	specialFT_can.width=window.innerWidth;
+	specialFT_can.height=window.innerHeight;	
+	specialFT_ctx=specialFT_can.getContext('2d');
+
+//score canvas	
+	s_can=_getid('s_canvas');
+	s_can.width=window.innerWidth;
+	s_can.height=window.innerHeight;	
+	s_ctx=s_can.getContext('2d');
+
+//special fruit timer canvas	
+	timer_can=_getid('timer_canvas');
+	timer_can.width=window.innerWidth;
+	timer_can.height=window.innerHeight;	
+	timer_ctx=timer_can.getContext('2d');
+
+//deafult timer canvas	
+	ltimer_can=_getid('ltimer_canvas');
+	ltimer_can.width=window.innerWidth;
+	ltimer_can.height=window.innerHeight;	
+	ltimer_ctx=ltimer_can.getContext('2d');
+
+//bomb canvas and game over canvas
+	bo_can=_getid('bo_canvas');
+	bo_can.width=window.innerWidth;
+	bo_can.height=window.innerHeight;	
+	bo_ctx=bo_can.getContext('2d');
+
+//combo and special fruit taken image draw canvas
+	c_can=_getid('c_canvas');
+	c_can.width=window.innerWidth;
+	c_can.height=window.innerHeight;	
+	c_ctx=c_can.getContext('2d');	
+/***************************************/
+
+/********************************/
+
+//blade canvas
+	can=_getid('b_canvas');
+	can.width=window.innerWidth;
+	can.height=window.innerHeight;
+	ctx=can.getContext('2d');
+
+//fruit canvas
+	f_can=_getid('f_canvas');
+	f_can.width=window.innerWidth;
+	f_can.height=window.innerHeight;
+	f_ctx=f_can.getContext('2d');
+
+//half fruit canvas
+	hf_can=_getid('hf_canvas');
+	hf_can.width=window.innerWidth;
+	hf_can.height=window.innerHeight;
+	hf_ctx=hf_can.getContext('2d');
+
+/**********************************/
+
+//DELETE ELEMENT FROM ARRAY
+	function del(arr,index){
+		var arr1,arr2;	
+		if(index!=0)
+		{
+			arr1=arr.slice(0,index);
+			arr2=arr.slice(index+1);
+			arr=arr1.concat(arr2);
+		}
+		else
+			arr.shift();
+		return arr;
+	}
+
+/**************************************/
+//BLADE(blade.js)	
+
+/****************************/
+//FRUIT MOVE(fruits.js)
+
+/***********************************************/
+
+//COLLISION DETECTION
+	
+//Audio objects declaration 
+	var sound_blade=new Audio();
+	sound_blade.src='./soundfiles/blade.mp3';
+
+	var sound_fruit=new Audio();
+	sound_fruit.src='./soundfiles/fruit.mp3';	
+
+/************************************/
+//LEVEL DESIGN
+
+//60 seconds play
+function arcade(){
+	startstartnoSI();
+	startspeedSI();
+	levelTimer();
+}
+//3 time leave play
+function quickplay(){
+
+	bo_ctx.clearRect(0,0,window.innerWidth,window.innerHeight);
+	startstartnoSI();
+	startspeedSI();
+	fruitsmissed();
+	SIfruitsmissed();
+
+}
+
+function levelTimer(){
+	ltimer_ctx.drawImage(scorenum[1],947,70,20,50);
+	ltimer_ctx.drawImage(scorenum[10],980,70,20,50);
+	ltimer_ctx.drawImage(scorenum[0],1010,70,20,50);
+	ltimer_ctx.drawImage(scorenum[0],1040,70,20,50);
+	var time=59;
+	setInterval(function(){
+				ltimer_ctx.clearRect(0,0,window.innerWidth,window.innerHeight);
+				ltimer_ctx.drawImage(scorenum[0],947,70,20,50);
+				ltimer_ctx.drawImage(scorenum[10],980,70,20,50);
+				ltimer_ctx.drawImage(scorenum[(Math.floor(time/10))%10],1010,70,20,50);
+				ltimer_ctx.drawImage(scorenum[time%10],1040,70,20,50);
+				time--;
+				if(time == 0)
+					gameFinished();
+	},1000);
+}
+
+rcross=new Image();
+rcross.src='./nums/rcross';
+bcross=new Image();
+bcross.src='./nums/bcross';
+
+function fruitsmissed(){
+		ltimer_ctx.clearRect(0,0,window.innerWidth,window.innerHeight);
+		var missed=fruitsgone;
+		var temp=1090;
+		
+		for(var i=0;i<missed;i++)
+		{
+			ltimer_ctx.drawImage(rcross,temp,80,20,30);
+			temp+=30;	
+		}
+		for(var i=missed;i<3;i++)
+		{
+			ltimer_ctx.drawImage(bcross,temp,80,20,30);
+			temp+=30;
+		}
+		if(missed >=3)
+			gameFinished();
+				
+}
+function SIfruitsmissed(){
+		setInterval(fruitsmissed,100);
+}	
+function gameFinished(){
+	clearInterval(speedSI);
+	clearInterval(noSI);
+	clearInterval(snoSI);
+	try{
+	clearInterval(temporary);
+	}
+	catch(e){}
+	c_ctx.clearRect(0,0,window.innerWidth,window.innerHeight);
+	sfruitbackcolor_ctx.clearRect(0,0,window.innerWidth,window.innerHeight);
+	specialFT_ctx.clearRect(0,0,window.innerWidth,window.innerHeight);
+	timer_ctx.clearRect(0,0,window.innerWidth,window.innerHeight);
+	splash_ctx.clearRect(0,0,window.innerWidth,window.innerHeight);
+	f_ctx.clearRect(0,0,window.innerWidth,window.innerHeight);
+	imgref=[];
+	pimgref=[];
+	sstatus=[];
+	splash_ctx.clearRect(img,0,0,window.innerWidth,window.innerHeight);
+	gamefinishhandler();	
+}
+
+imggameover=new Image();
+imggameover.src='./images/gameover';
+imgrestart=new Image();
+imgrestart.src='./images/restart';
+imgback=new Image();
+imgback.src='./images/back';
+best=new Image();
+best.src='./images/best';
+function gamefinishhandler(){
+	bo_ctx.clearRect(0,0,window.innerWidth,window.innerHeight);
+	bo_ctx.fillStyle='rgba(0,0,0,0.8)';
+	bo_ctx.fillRect(0,0,window.innerWidth,window.innerHeight);
+	bo_ctx.drawImage(imggameover,450,200,400,100);
+	bo_ctx.drawImage(imgrestart,620,350,70,70);
+	bo_ctx.drawImage(imgback,1158,528,70,70);
+	bo_ctx.drawImage(best,100,80,70,40);
+	drawCircle(1190,560);
+	gamerestart=1;
+	if(window.localStorage.score)
+	{	
+		if(window.localStorage.score < score)
+				window.localStorage.score = score;
+	}
+	else
+		window.localStorage.score = score;
+	bo_ctx.font='30px Arial, Bold';
+	bo_ctx.fillStyle='yellow';
+	bo_ctx.strokeStyle='yellow';
+	bo_ctx.fillText(window.localStorage.score,115,160);
+	bo_ctx.fillText(score,1150,160);
+	bo_ctx.lineWidth='60px';
+	bo_ctx.font='40px Comic Sans MS, Bold';
+	bo_ctx.fillText('Your Score',1050,120);					
+	bo_ctx.strokeText('Your Score',1050,120);
+	
+	bo_ctx.fillText('Fruits cut',90,540);					
+	bo_ctx.strokeText('Fruits cut',90,540);
+	bo_ctx.font='30px Arial, Bold';
+	bo_ctx.fillStyle='yellow';
+	bo_ctx.strokeStyle='yellow';
+	bo_ctx.fillText(cut,110,590);
+
+					
+}
+function goback(){
+	if(X>1150 && X<1240 && Y>520 && Y<610) 
+	{
+	setTimeout(function(){
+		window.location.href='../gamemodes/main.html';
+	},500)
+	}	
+	if(X>620 && X<690 && Y>350 && Y<420)
+	{
+	setTimeout(function(){
+		
+		window.location.href=window.location.href;
+	},500);
+	}
+}
+var radius = 50;
+function drawCircle(centerX,centerY)
+{ 
+			c_ctx.beginPath();
+     		c_ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+      		c_ctx.fillStyle = 'rgba(128,0,0,0.4)';
+      		c_ctx.fill();
+      		c_ctx.lineWidth = 5;
+      		c_ctx.strokeStyle = 'rgba(128,0,0,1)';
+      		c_ctx.stroke();
+    	
+    		c_ctx.beginPath();
+     		c_ctx.arc(centerX, centerY, radius-30, 0, 2 * Math.PI, false);
+      		c_ctx.fillStyle = 'rgba(0,0,0,0.1s)';
+      		c_ctx.fill();
+      		c_ctx.lineWidth = 5;
+      		c_ctx.strokeStyle = '#990000';
+      		c_ctx.stroke();
+}
+var query=window.location.href.split('=');
+if(query[1]==1)
+	quickplay();
+else 
+	arcade();
+	
+</script>
+
+</html>
+
