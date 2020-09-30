@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>Prime Game: Sliding Puzzle</title>
+	
+	<!-- Import Sentry SDK-->
+	<script src="https://browser.sentry-cdn.com/5.20.1/bundle.min.js" integrity="sha384-O8HdAJg1h8RARFowXd2J/r5fIWuinSBtjhwQoPesfVILeXzGpJxvyY/77OaPPXUo" crossorigin="anonymous"></script>
+	<!--Configure Sentry SDK-->
+	<script>
+	
+		Sentry.init({ 
+		dsn: 'https://37bd8f5e442c46d097beaae3421077e4@o432870.ingest.sentry.io/5387004' 
+		});
+
+	</script>
+	
+	<script src="phaser.min.js"></script>
+	<script src="Boot.js"></script>
+	<script src="Preloader.js"></script>
+	<script src="Game.js"></script>
+</head>
+<body style="margin:0px;" bgcolor="#000000">
+
+<div id="gameContainer"></div>
+
+<script type="text/javascript">
+
+window.onload = function() {
+
+	var game = new Phaser.Game(360,600, Phaser.AUTO, 'gameContainer');
+
+	game.state.add('Boot', BasicGame.Boot);
+	game.state.add('Preloader', BasicGame.Preloader);
+	// game.state.add('MainMenu', BasicGame.MainMenu);
+	game.state.add('Game', BasicGame.Game);
+
+	game.state.start('Boot');
+
+};
+
+</script>
+
+</body>
+</html>
