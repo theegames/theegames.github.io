@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+
+  <meta charset="utf-8">
+  <meta name="author" content="Prime Games Co">
+  <meta name="description" content="Push down all the blocks in the minimum number of moves.">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Prime Game: HexaHexa</title>
+  <script src="bundle.js" defer></script>
+  
+  <!-- Import Sentry SDK-->
+	<script src="https://browser.sentry-cdn.com/5.20.1/bundle.min.js" integrity="sha384-O8HdAJg1h8RARFowXd2J/r5fIWuinSBtjhwQoPesfVILeXzGpJxvyY/77OaPPXUo" crossorigin="anonymous"></script>
+	<!--Configure Sentry SDK-->
+	<script>
+	
+		Sentry.init({ 
+		dsn: 'https://37bd8f5e442c46d097beaae3421077e4@o432870.ingest.sentry.io/5387004' 
+		});
+
+  </script>
+
+  <style>
+    /* Prevent flash of unstyled content. */
+    body {
+      opacity: 0;
+    }
+  </style>
+
+</head>
+<body>
+
+  <audio preload="auto" class="lose" src="audio/lose.mp3"></audio>
+  <audio preload="auto" class="move" src="audio/move.mp3"></audio>
+  <audio preload="auto" class="win" src="audio/win.mp3"></audio>
+
+</body>
+</html>
