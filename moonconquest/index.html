@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr" dir="ltr">
+<head>
+	<title>Prime Game: Moon Conquest</title>
+	<meta name="apple-mobile-web-app-capable content=yes">
+    <meta name="apple-mobile-web-app-status-bar-style content=black">
+    <meta name="viewport" content="width=device-width; maximum-scale=1.0; user-scalable=0;target-densitydpi=device-dpi" />
+	
+	<!-- Import Sentry SDK-->
+	<script src="https://browser.sentry-cdn.com/5.20.1/bundle.min.js" integrity="sha384-O8HdAJg1h8RARFowXd2J/r5fIWuinSBtjhwQoPesfVILeXzGpJxvyY/77OaPPXUo" crossorigin="anonymous"></script>
+	<!--Configure Sentry SDK-->
+	<script>
+	
+		Sentry.init({ 
+		dsn: 'https://37bd8f5e442c46d097beaae3421077e4@o432870.ingest.sentry.io/5387004' 
+		});
+
+	</script>
+	
+	<style>
+		html,
+		body,
+		#render{
+			height: 100%;
+			margin: 0;
+			padding: 0;
+			background-color: #1c1c1c;
+			overflow: hidden;
+		}
+	</style>
+</head>
+<body>
+	<div id="render"></div>
+	<script src="./js/phaser.min.js"></script>
+	<script src="./js/main.js"></script>
+	<script src="./js/Boot.js"></script>
+	<script src="./js/Load.js"></script>
+	<script src="./js/Menu.js"></script>
+	<script src="./js/Game.js"></script>
+	<script src="./js/End.js"></script>
+</body>
+</html>
